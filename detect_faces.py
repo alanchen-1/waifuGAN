@@ -24,17 +24,23 @@ def detect(filename, page, out_dir, cascade_file = './lbpcascade_animeface.xml')
                                      scaleFactor = 1.1,
                                      minNeighbors = 5,
                                      minSize = (24, 24))
-    
+    face_count = len(faces)
     if len(faces) > 0:
         for face in range(len(faces)):
             cur_image = filename[-6:-4]
             x, y, w, h = faces[face]
             # crop face
             out_file = os.path.join(out_dir, '{}_{}_{}.jpg'.format(page, cur_image, str(face+1).zfill(2)))
-            cv2.imwrite(out_file, image[int(y-0.1*h): int(y+0.9*h), x: x+w])
-        return True, len(faces), out_file
+            cropped_image = image[int(y-0.1*h): int(y+0.9*h), x: x+w]
+            cropped_h, cropped_w, cropped_c = cropped_image.shape
+            if(cropped_h < 64 or cropped_w < 64):
+                cv2.imwrite(out_file, cropped_image)
+            else:
+                print("Face too small, didn't export")
+                face_count -= 1
+        return True, face_count, out_file
     else:
-        return False, 0, ''
+        return False, face_count, ''
 
 cropped_dir = 'cropped_images'
 raw_dir = './raw_images/'
@@ -56,6 +62,6 @@ for page in pages:
         if successful:
             print('{} faces found and cropped: {}'.format(new_face_count, out_file))
 
-    total_faces+=new_face_count          
+    total_faces+=new_face_count
 
-    
+print("Total faces exported: ", total_faces)          
