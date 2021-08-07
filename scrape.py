@@ -5,10 +5,9 @@ from bs4 import BeautifulSoup
 
 total_count = 0
 root_url = 'https://www.zerochan.net/?s=id&p='
-root_dir = './images'
+root_dir = './raw_images/'
 if not os.path.isdir(root_dir):
     os.mkdir(root_dir)
-
 
 def download_imgs(page):
     page_count = 0
@@ -16,18 +15,16 @@ def download_imgs(page):
     if not os.path.isdir(out_dir):
         os.mkdir(out_dir)
 
-    os.chdir(out_dir)
     page_req = requests.get(root_url + page)
     page_soup = BeautifulSoup(page_req.text, 'html.parser')
 
     character_tags = [tag.attrs['src'][0:] for tag in page_soup.find_all('img')]
     for character in character_tags:
-        print(character)
         r = requests.get(character, stream = True)
 
         if r.status_code == 200:
             r.raw_decode_content = True
-            filename = "{}_{}.jpg".format(page, page_count)
+            filename = os.path.join(out_dir, "{}_{}.jpg".format(page, str(page_count).zfill(2)))
 
             with open(filename, 'wb') as f:
                 shutil.copyfileobj(r.raw, f)
@@ -40,7 +37,7 @@ def download_imgs(page):
     return page_count
 
 initial_page = 1
-final_page = 1
+final_page = 2
 pages = [str(p) for p in range(initial_page, final_page+1)]
 for page in pages:
     download_imgs(page)
