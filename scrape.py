@@ -4,7 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 
 total_count = 0
-root_url = 'https://www.zerochan.net/?s=id&p='
+root_url = 'https://www.zerochan.net/?p='
 root_dir = './raw_images/'
 if not os.path.isdir(root_dir):
     os.mkdir(root_dir)
@@ -37,7 +37,7 @@ def download_imgs(page):
     return page_count
 
 initial_page = 1
-final_page = 2
+final_page = 1000
 pages = [str(p) for p in range(initial_page, final_page+1)]
 for page in pages:
     download_imgs(page)
