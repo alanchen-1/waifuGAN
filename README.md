@@ -7,11 +7,11 @@ This is a DCGAN network trained to generate anime faces. Done before, but this t
 
 Data was scraped from [zerochan.net](https://www.zerochan.net/). There's a lot of high-quality existing datasets out there like [this](https://github.com/bchao1/Anime-Face-Dataset) and [this](https://www.kaggle.com/subinium/highresolution-anime-face-dataset-512x512), but none of them that I found used zerochan so I thought I'd try it out. I did try pixiv at first just because the art on there is cool/high quality, but I got screwed with 403 errors. Zerochan worked pretty well for this project though.
 There's a bunch of pages on Zerochan: recent, popular (with different date range options), etc. Through just browsing, I decided to only use the following pages to scrape for images:
-1. Daily popular page
+1. Popular (current day)
 2. Popular (last week)
 3. Popular (last 3 months)
 
-I didn't use popular all time and recent because they were populated with both lower quality images and also very large images that were too big for my dataset. 
+I didn't use popular all time and recent because they were populated with both lower quality images and also very large images that were too big for my dataset. The datase I used was collected/scraped on August 10th, 2021. 
 
 ## Dataset Preparation
 I used [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) as my face detector. Not perfect, but works well enough. <br>
