@@ -11,7 +11,7 @@ There's a bunch of pages on Zerochan: recent, popular (with different date range
 2. Popular (last week)
 3. Popular (last 3 months)
 
-I didn't use popular all time and recent because they were populated with both lower quality images and also very large images that were too big for my dataset. The datase I used was collected/scraped on August 10th, 2021. 
+I didn't use popular all time and recent because they were populated with both lower quality images and also very large images that were too big for my dataset. The datase I used was collected/scraped on August 10th, 2021: ~30,000 raw images were scraped. 
 
 ## Dataset Preparation
 I used [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) as my face detector. Not perfect, but works well enough. <br>
