@@ -3,7 +3,6 @@ import random
 import torch
 import torch.nn as nn
 import torch.nn.parallel
-import torch.backends.cudnn as cudnn
 import torch.optim as optim
 import torch.utils.data
 import torchvision.datasets as dset
@@ -12,17 +11,16 @@ import torchvision.utils as vutils
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from IPython.display import HTML
 
-seed = 420
+# set random seed haha
+seed = 696
 print("Seed set as: ", seed)
 random.seed(seed)
 torch.manual_seed(seed)
 
-# set parameters
+# -------- set parameters ----------#
 # Root directory for dataset
 dataroot = "./cropped_images/"
-
 # Number of workers for the dataloader
 workers = 2
 # Batch size during training
@@ -31,12 +29,11 @@ batch_size = 128
 # Spatial size of training images (All images resized to this size)
 image_size = 64
 # Number of channels in training images.
-# Color images = 3 for RGB
+# Color images = 3 (for RGB)
 nc = 3
 # Size of z latent vector (generator input size)
 nz = 100
 # Size of feature maps in generator
-# I think has to be same as image_size
 ngf = 64
 # Size of feature maps in discriminator
 ndf = 64
@@ -44,7 +41,7 @@ ndf = 64
 num_epochs = 5
 # Learning rate
 lr = 0.0002
-# Beta 1 hyperparam for Adam optimizers
+# Beta 1 hyperparam for adam
 beta1 = 0.5
 # Number of GPUs
 ngpu = 1
@@ -52,6 +49,8 @@ ngpu = 1
 # Define custom dataset with ImageFolder
 dataset = dset.ImageFolder(root = dataroot,
                             transform = transforms.Compose([
+                                # specify transforms, including resizing
+                                # could be improved in future (resizing sus)
                                 transforms.Resize(image_size),
                                 transforms.CenterCrop(image_size),
                                 transforms.ToTensor(),
@@ -166,7 +165,7 @@ netD.apply(weights_init)
 print(netD)
 
 # Initialize BCELoss function
-criterion = nn.BCELoss()
+loss = nn.BCELoss()
 
 # Create batch of latent vectors that we will use to visualize
 #  the progression of the generator
@@ -188,39 +187,39 @@ G_losses = []
 D_losses = []
 iters = 0
 
-print("Starting Training Loop...")
+print("Starting training")
 # For each epoch
 for epoch in range(num_epochs):
     # For each batch in the dataloader
     for i, data in enumerate(dataloader, 0):
-
-        ############################
-        # (1) Update D network: maximize log(D(x)) + log(1 - D(G(z)))
-        ###########################
-        ## Train with all-real batch
+        # Start with discriminator
+        # Real batch
         netD.zero_grad()
-        # Format batch
         real_cpu = data[0].to(device)
-        b_size = real_cpu.size(0)
-        label = torch.full((b_size,), real_label, dtype=torch.float, device=device)
-        # Forward pass real batch through D
+        batch_size = real_cpu.size(0)
+        label = torch.full((batch_size,), real_label, dtype=torch.float, device=device)
+
+        # Feed into discriminator
         output = netD(real_cpu).view(-1)
-        # Calculate loss on all-real batch
-        errD_real = criterion(output, label)
-        # Calculate gradients for D in backward pass
+
+        # loss for real batch
+        errD_real = loss(output, label)
+        # Calculate gradients for D
         errD_real.backward()
+
+        # calculate probability
         D_x = output.mean().item()
 
         ## Train with all-fake batch
         # Generate batch of latent vectors
-        noise = torch.randn(b_size, nz, 1, 1, device=device)
+        noise = torch.randn(batch_size, nz, 1, 1, device=device)
         # Generate fake image batch with G
         fake = netG(noise)
         label.fill_(fake_label)
         # Classify all fake batch with D
         output = netD(fake.detach()).view(-1)
         # Calculate D's loss on the all-fake batch
-        errD_fake = criterion(output, label)
+        errD_fake = loss(output, label)
         # Calculate the gradients for this batch, accumulated (summed) with previous gradients
         errD_fake.backward()
         D_G_z1 = output.mean().item()
@@ -237,14 +236,14 @@ for epoch in range(num_epochs):
         # Since we just updated D, perform another forward pass of all-fake batch through D
         output = netD(fake).view(-1)
         # Calculate G's loss based on this output
-        errG = criterion(output, label)
+        errG = loss(output, label)
         # Calculate gradients for G
         errG.backward()
         D_G_z2 = output.mean().item()
         # Update G
         optimizerG.step()
 
-        # Output training stats
+        # Output training stats, nice formatting by pytorch
         if i % 50 == 0:
             print('[%d/%d][%d/%d]\tLoss_D: %.4f\tLoss_G: %.4f\tD(x): %.4f\tD(G(z)): %.4f / %.4f'
                   % (epoch, num_epochs, i, len(dataloader),
@@ -270,6 +269,7 @@ plt.xlabel("iterations")
 plt.ylabel("Loss")
 plt.legend()
 plt.show()
+plt.savefig("loss graph.png")
 
 #%%capture
 fig = plt.figure(figsize=(8,8))
@@ -277,4 +277,4 @@ plt.axis("off")
 ims = [[plt.imshow(np.transpose(i,(1,2,0)), animated=True)] for i in img_list]
 ani = animation.ArtistAnimation(fig, ims, interval=1000, repeat_delay=1000, blit=True)
 
-HTML(ani.to_jshtml())
+ani.save("animation.gif")

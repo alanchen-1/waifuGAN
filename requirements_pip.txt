@@ -1,0 +1,31 @@
+beautifulsoup4 @ file:///home/linux1/recipes/ci/beautifulsoup4_1610988766420/work
+brotlipy==0.7.0
+certifi==2021.5.30
+cffi @ file:///tmp/build/80754af9/cffi_1625814692085/work
+chardet @ file:///tmp/build/80754af9/chardet_1607706775000/work
+cryptography @ file:///tmp/build/80754af9/cryptography_1616767007030/work
+cycler==0.10.0
+idna @ file:///home/linux1/recipes/ci/idna_1610986105248/work
+kiwisolver @ file:///home/conda/feedstock_root/build_artifacts/kiwisolver_1610099772044/work
+matplotlib @ file:///home/conda/feedstock_root/build_artifacts/matplotlib-suite_1620506038354/work
+numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1626648378336/work
+olefile @ file:///home/conda/feedstock_root/build_artifacts/olefile_1602866521163/work
+Pillow @ file:///home/conda/feedstock_root/build_artifacts/pillow_1625677815963/work
+pycparser @ file:///tmp/build/80754af9/pycparser_1594388511720/work
+pyOpenSSL @ file:///tmp/build/80754af9/pyopenssl_1608057966937/work
+pyparsing==2.4.7
+PyQt5==5.12.3
+PyQt5_sip==4.19.18
+PyQtChart==5.12
+PyQtWebEngine==5.12.1
+PySocks @ file:///tmp/build/80754af9/pysocks_1605305812635/work
+python-dateutil @ file:///home/conda/feedstock_root/build_artifacts/python-dateutil_1626286286081/work
+requests @ file:///tmp/build/80754af9/requests_1608241421344/work
+six @ file:///tmp/build/80754af9/six_1623709665295/work
+soupsieve @ file:///tmp/build/80754af9/soupsieve_1616183228191/work
+torch==1.9.0+cu111
+torchaudio==0.9.0
+torchvision==0.10.0+cu111
+tornado @ file:///home/conda/feedstock_root/build_artifacts/tornado_1610094708661/work
+typing-extensions==3.10.0.0
+urllib3 @ file:///tmp/build/80754af9/urllib3_1625084269274/work
