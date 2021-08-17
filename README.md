@@ -16,6 +16,7 @@ I didn't use popular all time and recent because they were populated with both l
 ## Dataset Preparation
 I used [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) as my face detector. Not perfect, but works well enough. <br>
 It turns out Pytorch's resize transform is more powerful than I expected. Didn't know it could scale up, so initial implementations included checking for faces that were too small, but the current implementation doesn't use this and insteads takes all images, regardless of size. Very nice and beefs up the dataset a lot. 
+There was some corrupt images, but in total ~14k faces were exported. 
 
 ## Limitations/Future Improvements
 ### Different art styles

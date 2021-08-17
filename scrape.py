@@ -7,7 +7,7 @@ total_count = 0
 # choose directory to scrape from
 # I think popular might result in higher quality images
 # last week/past 3 months > all time
-#recents_url = 'https://www.zerochan.net/?p='
+# recents_url = 'https://www.zerochan.net/?p='
 last_week_url = 'https://www.zerochan.net/?s=fav&t=1&p='
 last_months_url = 'https://www.zerochan.net/?s=fav&t=2&p='
 popular_url = 'https://www.zerochan.net/popular'
@@ -45,6 +45,7 @@ def download_imgs(url, directory_name = 'tmp'):
             print("no images found @ ", url)
     except:
         print("error in getting url probably, moving on: ", url)
+    
     return page_count
 
 
@@ -53,6 +54,7 @@ def download_imgs_page(page, page_urls):
     out_dir = os.path.join(root_dir, page)
     if not os.path.isdir(out_dir):
         os.mkdir(out_dir)
+    
     for url in page_urls:
         try:
             page_req = requests.get(url + page)
@@ -71,7 +73,6 @@ def download_imgs_page(page, page_urls):
                         with open(filename, 'wb') as f:
                             shutil.copyfileobj(r.raw, f)
 
-                        
                         print('successful, ', filename)
                     else:
                         print("failed, error: ", r.status_code)
@@ -80,10 +81,12 @@ def download_imgs_page(page, page_urls):
                 print("no images found @ ", url)
         except:
             print("error in url probably, moving on", url)
+    
     return page_count
 
+
 initial_page = 1
-final_page = 2
+final_page = 999
 pages = [str(p) for p in range(initial_page, final_page+1)]
 total_count += download_imgs(popular_url, directory_name="popular")
 for page in pages:
