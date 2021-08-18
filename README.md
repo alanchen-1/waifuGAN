@@ -1,4 +1,4 @@
-# waifuGAN project
+# waifuGAN
 
 This is a DCGAN network trained to generate anime faces, implemented in PyTorch with data taken from [zerochan.net](https://www.zerochan.net/) and cropped using OpenCV. 
 
@@ -16,7 +16,9 @@ I didn't use popular all time and recent because they were populated with both l
 
 I used [lbpcascade_animeface](https://github.com/nagadomi/lbpcascade_animeface) as my face detector. Not perfect, but works well enough. <br>
 It turns out Pytorch's resize transform is more powerful than I expected. Didn't know it could scale up, so initial implementations included checking for faces that were too small, but the current implementation doesn't use this and insteads takes all images, regardless of size. Very nice and beefs up the dataset a lot. 
-There was some corrupt images, but in total ~14,000 faces were exported. Full cropped dataset linked [here](https://drive.google.com/drive/folders/1tfsOn0kAV3fmjNpQdmh-jDorHntJHyek?usp=sharing), some examples of the face crops are shown below:
+There was some corrupt images, but in total ~14,000 faces were exported. 
+
+Full cropped dataset linked [here](https://drive.google.com/drive/folders/1tfsOn0kAV3fmjNpQdmh-jDorHntJHyek?usp=sharing), some examples of the face crops are shown below:
 
 ![example_training](assets/images/example_training.png "example training")
 
@@ -45,4 +47,4 @@ Since I used an open source website and people draw art/anime in different ways,
 Instead using someone else's (mildly outdated) face detector, I plan on creating my own face detector. The one I used was okay, but there are definitely some bad crops (I won't show any, since they're borderline NSFW). Eliminating those should improve performance, though there weren't that many. 
 
 ## Extra Comments
-This project was done Summer of 2021 as a fun side project to learn about DCGANs. Been having a lot of fun with AI - DCGAN theory is genius in particular. My dream is to one day use AI to change the world, instead of generating bad anime faces...
+This project was done summer 2021 as a fun side project to learn about DCGANs. Been having a lot of fun with AI - DCGAN theory is genius in particular. My dream is to one day use AI to change the world, instead of generating bad anime faces...
