@@ -28,13 +28,13 @@ I did roughly 10 runs with different parameters. Here is a sample image set I ge
 My final models are in assets/example_trained_model; feel free to download those and then run generate.py to get some more images (change the random seed in the file).  
 
 A couple observations I had, as the inexperienced GAN trainer I am:
-1. Batch size needs to be small. I found the 128 batch size used in the DCGAN paper to be way too big; my "final" version had a batch size of 16. In DCGANs, the discriminator is updated first before the generator. Because of this, the discriminator can get too good, too fast if we feed too much data in the beginning. It then outperforms the generator consistently and doesn't create a healthy competitive environment for the two to train. It's like pitting Michael Phelps against me in swimming. Nobody gains anything from it since the outcome is clear - I'd obviously win. 
-2. More epochs does not mean better. I tried running some longer models (upwards of 400 epochs with batch size 32), but the performance didn't get much better/even got worse. In fact, because using a smaller batch size is better, using less epochs is even more necessary since we end up updating the models more simply from having more batches. 
+1. **Batch size needs to be small.** I found the 128 batch size used in the DCGAN paper to be way too big; my "final" version had a batch size of 16. In DCGANs, the discriminator is updated first before the generator. Because of this, the discriminator can get too good, too fast if we feed too much data in the beginning. It then outperforms the generator consistently and doesn't create a healthy competitive environment for the two to train. It's like pitting Michael Phelps against me in swimming. Nobody gains anything from it since the outcome is clear - I'd obviously win. 
+2. **More epochs does not mean better.** I tried running some longer models (upwards of 400 epochs with batch size 32), but the performance didn't get much better/even got worse. In fact, because using a smaller batch size is better, using less epochs is even more necessary since we end up updating the models more simply from having more batches. 
 3. It may be worth to play around with the learning rates of the discriminator and generator. This is maybe worth it, as it could mitigate the necessity to use a smaller batch size since the discriminator loses the genetics battle and simply learns slower. I didn't do much of this though, and just stuck with 0.0002, which is what the paper used. 
 
 In conclusion:
 
-![flaming](assets/images/flaming.gif.gif "flaming")
+![facts](assets/images/flaming.gif "facts")
 
 ## Limitations/Future Improvements
 ### Different art styles
