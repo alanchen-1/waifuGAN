@@ -22,6 +22,7 @@ Full cropped dataset linked [here](https://drive.google.com/drive/folders/1tfsOn
 
 ![example_training](assets/images/example_training.png "example training")
 
+top right corner ???? 
 ## Model/Results
 I did roughly 10 runs with different parameters. Here is a sample image set I generated with the trained model:
 
