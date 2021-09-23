@@ -46,6 +46,3 @@ In conclusion:
 Since I used an open source website and people draw art/anime in different ways, there's a lot of variety in how the faces are drawn (i.e. noise for the model). It makes it more difficult to model compared to human faces or a homogenous (maybe only from one artist) dataset. The face identifier/cropper seems to only be trained on a subset of anime faces, so it only selects what it recognizes as a face, but as displayed above, there is still a drastic difference between the art styles. 
 ### Implementing my own face detector
 Instead using someone else's (mildly outdated) face detector, I plan on creating my own face detector. The one I used was okay, but there are definitely some bad crops (I won't show any, since they're borderline NSFW). Eliminating those should improve performance, though there weren't that many. 
-
-## Extra Comments
-This project was done summer 2021 as a fun side project to learn about DCGANs. Been having a lot of fun with AI - DCGAN theory is genius in particular. My dream is to one day use AI to change the world, instead of generating bad anime faces...
