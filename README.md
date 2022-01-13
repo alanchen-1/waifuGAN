@@ -1,6 +1,6 @@
 # waifuGAN
 
-This is a waifuGAN, a DCGAN network trained to generate anime faces, implemented in PyTorch with data taken from [zerochan.net](https://www.zerochan.net/), [shuushuu](https://e-shuushuu.net/), and cropped using OpenCV. Read the full blog post here: [link](https://alanchen-1.github.io/posts/waifuGAN.html).
+This is a waifuGAN, a DCGAN network trained to generate anime faces, implemented in PyTorch with data taken from [zerochan.net](https://www.zerochan.net/), [shuushuu](https://e-shuushuu.net/), and cropped using OpenCV. Read the full blog posts here: [August 2021](https://alanchen-1.github.io/posts/waifuGAN.html), [January 2022](https://alanchen-1.github.io/posts/waifuGANrevisit.html).
 
 ## Example Images
 Here are some handpicked examples of the newly trained and updated model (1/9/2022):
