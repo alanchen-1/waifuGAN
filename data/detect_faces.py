@@ -12,6 +12,18 @@ cropped_dir = './cropped_images/'
 
 
 def detect(filename, page, site, out_dir, cascade_file = '../lbpcascade_animeface.xml'):
+    """
+    Detects faces in the specified file.
+        Parameters:
+            filename (str) : filename to detect faces in
+            page, site (str) : used in naming
+            out_dir (str) : output directory
+            cascade_file (str) : cascade xml file to use with OpenCV
+        Returns:
+            (bool) : if faces were outputted
+            (int) : how many faces were outputted
+            (str) : outfile 
+    """
     if not os.path.isfile(cascade_file):
         raise RuntimeError("%s: not found " % cascade_file)
 

@@ -25,7 +25,7 @@ random.seed(seed)
 torch.manual_seed(seed)
 
 device = torch.device("cuda:0" if (torch.cuda.is_available() and ngpu > 0) else "cpu")
-fixed_noise = torch.randn(128, nz, 1, 1, device=device)
+fixed_noise = torch.randn(64, nz, 1, 1, device=device)
 
 class Generator(nn.Module):
     def __init__(self, ngpu):

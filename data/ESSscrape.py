@@ -21,6 +21,15 @@ if not os.path.isdir(root_dir):
     os.mkdir(root_dir)
 
 def download_imgs_page(page, page_urls, root_dir):
+    """
+    Downloads the images into the root_dir. 
+        Paramters:
+            page (str) : page name
+            page_urls (list[str]) : page urls to iterate through
+            root_dir (str) : root directory to download into
+        Returns:
+            page_count (int) : number of images on this page
+    """
     page_count = 0
     out_dir = os.path.join(root_dir, page)
     if not os.path.isdir(out_dir):

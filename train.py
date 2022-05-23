@@ -18,6 +18,11 @@ from models.models import init_models
 from options.options import TrainOptions
 
 def run(opt):
+    """
+    Runs the training procedure.
+        Parameters:
+            opt (TrainOptions) : options to train with
+    """
     torch.multiprocessing.freeze_support()
     # set random seed
     seed = 888
