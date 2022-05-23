@@ -11,7 +11,7 @@ if not os.path.isdir(cropped_dir):
 cropped_dir = './cropped_images/'
 
 
-def detect(filename, page, site, out_dir, cascade_file = './lbpcascade_animeface.xml'):
+def detect(filename, page, site, out_dir, cascade_file = '../lbpcascade_animeface.xml'):
     if not os.path.isfile(cascade_file):
         raise RuntimeError("%s: not found " % cascade_file)
 
