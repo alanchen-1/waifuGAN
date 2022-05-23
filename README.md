@@ -9,6 +9,8 @@ Here are some handpicked examples of the newly trained and updated model (1/9/20
 
 
 ## Changelog: 
+5/23/2022 - Reorganization of project files + some docs. Overall just tuning up some legacy code 😆
+
 1/9/2022 - Uploaded new model and updated blog with new info. 
 
 9/27/2021 - Moved entire README into a blog post onto my GitHub Pages. Check it out above. 
