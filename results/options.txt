@@ -1,0 +1,10 @@
+using options: 
+batch_size : 32
+dataroot : ./data/cropped_images/
+epochs : 100
+image_size : 64
+no_plots : False
+no_soft_labels : False
+output_dir : ./results/
+workers : 4
+
